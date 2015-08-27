@@ -24,18 +24,18 @@ export default class Page extends React.Component{
 
         let tiles = this.props.tiles.map( (tile) => {
             return(
-                <Tile imgUrl={tile.image} title={tile.name} channel={tile.channel} size="small" />
+                <Tile imgUrl={tile.image} title={tile.name} channel={tile.channel} size={tile.size} />
             );
         });
-        console.log(this.props.tiles)
+
+        debugger;
 
         return(
-            <div>
-                <TopTile>
-                    <div className="tilesContent">
-                        {tiles}
-                    </div>
-                </TopTile>
+            <div className="pageContainer">
+                <TopTile/>
+                <div className="tilesContent">
+                    {tiles}
+                </div>
             </div>
         )
 

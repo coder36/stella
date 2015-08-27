@@ -10,6 +10,7 @@ export default class Tile extends React.Component {
                         <img className="tile_img" src={this.props.imgUrl}/>
                     </div>
 
+
                     <div className="header_container">
                         <div className="header">
                             <h1>{this.props.title}</h1>
