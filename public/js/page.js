@@ -1,5 +1,6 @@
 import Tile from './tile'
 import TopTile from './toptile'
+import InfoTile from './infotile'
 import Store from './store'
 import React from 'react'
 import connectToStores from 'alt/utils/connectToStores'
@@ -28,12 +29,11 @@ export default class Page extends React.Component{
             );
         });
 
-        debugger;
-
         return(
             <div className="pageContainer">
                 <TopTile/>
                 <div className="tilesContent">
+                    <InfoTile/>
                     {tiles}
                 </div>
             </div>

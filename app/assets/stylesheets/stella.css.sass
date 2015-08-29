@@ -97,6 +97,27 @@ body
 
         -webkit-box-shadow: 1px 1px 15px rgba(0,0,0,.2)
 
+
+        .full-container
+            background-color: rgba($color,1)
+            background-image: -webkit-radial-gradient( 50% 50%, rgba(255,255,255,0.5), rgba($color,1))
+            height: 100%
+            width: 100%
+            overflow: hidden
+
+            .title
+                padding: 15px 15px 15px 15px
+                color: white
+                -webkit-font-smoothing: antialiased
+                font-size: 28px
+                text-align: left
+            .info
+                padding: 15px 15px 15px 15px
+                color: white
+                -webkit-font-smoothing: antialiased
+                font-size: 22px
+                text-align: left
+
         .container
             background-color: #ECECEE
             height: 100%
@@ -124,8 +145,9 @@ body
                 max-width: 100%
                 height: 100%
                 padding: 10px 15px 15px 15px
-                background: rgba(236, 236, 238, 0)
-                background-image: -webkit-radial-gradient( 90% 90%, #fff,$color)
+                background-color: rgba($color,1)
+                background-image: -webkit-radial-gradient( 50% 50%, rgba(255,255,255,0.5), rgba($color,1))
+
                 text-align: left
                 @include transition(all 2s ease-in)
                 .header
