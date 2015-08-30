@@ -2,9 +2,12 @@ import React from 'react'
 
 export default class InfoTile extends React.Component {
 
+    onClick() {
+    }
+
     render() {
         return (
-            <div className="tile-skyLiving-medium">
+            <a onClick={this.onClick} className="tile-skyLiving-medium" href="#">
                 <div className="full-container">
                     <div className="title">
                         Welcome Back
@@ -14,7 +17,7 @@ export default class InfoTile extends React.Component {
                         manage your account and discover all you can get as a Sky customer
                     </div>
                 </div>
-            </div>
+            </a>
         )
     }
 
