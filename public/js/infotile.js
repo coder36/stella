@@ -1,4 +1,5 @@
 import React from 'react'
+import StellaActions from './stellaactions'
 
 export default class InfoTile extends React.Component {
 

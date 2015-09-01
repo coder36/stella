@@ -1,6 +1,7 @@
 import Tile from './tile'
 import TopTile from './toptile'
 import InfoTile from './infotile'
+import FullTile from './fulltile'
 import Store from './store'
 import React from 'react'
 import connectToStores from 'alt/utils/connectToStores'
@@ -23,11 +24,24 @@ export default class Page extends React.Component{
 
     render() {
 
-        let tiles = this.props.tiles.map( (tile) => {
-            return(
-                <Tile imgUrl={tile.image} title={tile.name} channel={tile.channel} size={tile.size} />
+        let tiles = [];
+        let fullTile = null;
+
+
+        this.props.tiles.forEach( (tile) => {
+            tiles.push(
+                <Tile tile={tile}/>
             );
+
+            if (tile.fullScreen) {
+                fullTile = tile;
+            }
         });
+
+        if ( fullTile ) {
+            tiles.push(<FullTile tile={fullTile}/>)
+        }
+
 
         return(
             <div className="pageContainer">

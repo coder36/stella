@@ -13,6 +13,26 @@ class StellaStore {
         this.setState( { tiles } );
     }
 
+    setFullTile(tile) {
+        const tiles = this.state.tiles;
+        const res = tiles.map( (t) => {
+           t.fullScreen = (t.id === tile.id);
+           return t;
+        });
+
+        this.setState( {tiles: res })
+    }
+
+    closeFullTile() {
+        const tiles = this.state.tiles;
+        const res = tiles.map( (t) => {
+            t.fullScreen = false;
+            return t;
+        });
+
+        this.setState( {tiles: res })
+    }
+
     refreshTiles() {
         fetch("/tiles.json")
             .then(resp => resp.json())
@@ -23,7 +43,7 @@ class StellaStore {
 
     startRefreshDaemon() {
         this.refreshTiles();
-        setInterval(this.refreshTiles, 1000 );
+        //setInterval(this.refreshTiles, 1000 );
     }
 
 }

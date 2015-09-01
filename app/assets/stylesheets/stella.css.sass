@@ -40,7 +40,7 @@ body
     +desktop
         position: relative
         top: -100px
-        max-width: 90%
+        width: 100%
         margin: auto
         text-align: center
 
@@ -51,7 +51,7 @@ body
     +tablet
         position: relative
         top: -100px
-        max-width: 90%
+        width: 100%
         margin: auto
         text-align: center
 
@@ -169,4 +169,60 @@ body
 @include tile(skyArts, #734993, "small")
 @include tile(skyArts, #734993, "medium")
 
+.fulltile
+    display: inline-block
+    position: relative
+    background: #222
+    height: 100vh
+    overflow-x: hidden
+    +animation-name(fadeIn)
+    +animation-duration(2s)
+    text-align: left
 
+
+    .bar
+        width: 100%
+        text-align: right
+        padding: 15px
+        a
+            text-decoration: none
+            color: white
+
+    .video
+        display: inline-block
+        text-align: left
+        +desktop()
+            max-width: 70%
+            padding-left: 20px
+
+    .description_container
+        display: inline-block
+        max-width: 100%
+        text-align: left
+        vertical-align: top
+        padding: 15px
+        +desktop()
+            padding-top: 0
+            max-width: 25%
+
+
+        .title
+            display: inline-block
+            color: white
+            font-size: 32px
+            -webkit-font-smoothing: antialiased
+            padding-bottom: 10px
+
+        .description
+            display: inline-block
+            color: white
+            font-size: 16px
+            -webkit-font-smoothing: antialiased
+
+
++keyframes(fadeIn)
+    0%
+        height: 100vh
+        opacity: 0
+    100%
+        height: 100vh
