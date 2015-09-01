@@ -23,6 +23,11 @@ $responsive_tablet_breakpoint: 1000px !default
     cursor: auto
     width: 100%
 
+a:active, a:focus, input
+    outline: 0
+    outline-style:  none
+    outline-width:  0
+
 body
     background-color: #ECECEE
     font-family: SkyTextRegular, sans-serif
@@ -110,13 +115,13 @@ body
                 padding: 15px 15px 15px 15px
                 color: white
                 -webkit-font-smoothing: antialiased
-                font-size: 28px
+                font-size: 42px
                 text-align: left
             .info
                 padding: 15px 15px 15px 15px
                 color: white
                 -webkit-font-smoothing: antialiased
-                font-size: 22px
+                font-size: 24px
                 text-align: left
 
         .container
@@ -160,14 +165,17 @@ body
                             font-size: 32px
                         font-weight: 100
 
+@include tile(skyOne, #135fa0, "small")
+@include tile(skyOne, #135fa0, "medium")
+
 @include tile(skyAtlantic, #003663, "small")
 @include tile(skyAtlantic, #003663, "medium")
 
 @include tile(skyLiving, #87a0af, "small")
 @include tile(skyLiving, #87a0af, "medium")
 
-@include tile(skyArts, #734993, "small")
-@include tile(skyArts, #734993, "medium")
+@include tile(skyArts, #67044E, "small")
+@include tile(skyArts, #67044E, "medium")
 
 .fulltile
     display: inline-block

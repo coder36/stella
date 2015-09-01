@@ -8,7 +8,7 @@ export default class InfoTile extends React.Component {
 
     render() {
         return (
-            <a onClick={this.onClick} className="tile-skyLiving-medium" href="#">
+            <a onClick={this.onClick} className="tile-skyOne-medium" href="#">
                 <div className="full-container">
                     <div className="title">
                         Welcome Back
