@@ -1,3 +1,3 @@
 import alt from './alt';
 
-export default alt.generateActions('updateTiles', 'setFullTile', 'closeFullTile');
+export default alt.generateActions('updateTiles', 'setFullTile', 'closeFullTile', 'redrawPage');

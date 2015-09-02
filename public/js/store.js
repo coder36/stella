@@ -5,8 +5,9 @@ class StellaStore {
 
     constructor() {
         this.bindActions(StellaActions)
-        this.state = { tiles: [] };
+        this.state = { tiles: [], redraw_page: 0 };
         this.startRefreshDaemon();
+        this.listenForResize();
     }
 
     updateTiles(tiles) {
@@ -33,6 +34,12 @@ class StellaStore {
         this.setState( {tiles: res })
     }
 
+    redrawPage() {
+        let counter = this.state.redraw_page;
+        counter++;
+        this.setState( {redraw_page: counter })
+    }
+
     refreshTiles() {
         fetch("/tiles.json")
             .then(resp => resp.json())
@@ -45,6 +52,13 @@ class StellaStore {
         this.refreshTiles();
         //setInterval(this.refreshTiles, 1000 );
     }
+
+    listenForResize() {
+        window.onresize = () => {
+            StellaActions.redrawPage();
+        };
+    }
+
 
 }
 

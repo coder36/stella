@@ -20,6 +20,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.20",
     "core-js": "npm:core-js@1.1.1",
     "fetch": "npm:whatwg-fetch@0.9.0",
+    "jquery": "github:components/jquery@2.1.4",
     "react": "npm:react@0.13.3",
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.4.2"

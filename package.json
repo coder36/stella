@@ -19,6 +19,7 @@
     "dependencies": {
       "alt": "npm:alt@^0.17.1",
       "fetch": "npm:whatwg-fetch@^0.9.0",
+      "jquery": "github:components/jquery@^2.1.4",
       "react": "npm:react@^0.13.3"
     },
     "devDependencies": {
