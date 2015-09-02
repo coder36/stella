@@ -1,33 +1,14 @@
 import React from 'react'
-import StellaActions from './stellaactions'
+import StellaActions from './../store/stellaactions'
+import Tile from './tile'
 
-
+@Tile
 export default class ShowTile extends React.Component {
-
-    onClick() {
-        StellaActions.setFullTile(this.props.tile)
-    }
-
-    close() {
-        StellaActions.closeFullTile();
-    }
-
-    render() {
-        if ( this.props.fullScreen ) {
-            return this.renderFullScreen()
-        }
-        else {
-            return this.renderTile();
-        }
-    }
 
     renderFullScreen() {
         let tile = this.props.tile;
         return(
-            <div id="fulltile" className="fulltile">
-                <div className="bar">
-                    <span><a onClick={() => this.close() } href={'#' + this.props.tile.id}>close</a></span>
-                </div>
+            <div>
                 <div className="video">
                     <video loop autoPlay controls>
                         <source src={tile.video} type="video/mp4"/>
@@ -50,7 +31,7 @@ export default class ShowTile extends React.Component {
     renderTile() {
         let tile = this.props.tile;
         return (
-            <a id={tile.id} href="#fulltile" onClick={(e) => this.onClick()} className={`tile-${tile.channel}-${tile.size}`}>
+            <a id={tile.id} href="#fulltile" onClick={(e) => this.open()} className={`tile-${tile.channel}-${tile.size}`}>
                 <div className="container">
                     <div className="img_container">
                         <img className="tile_img" src={tile.image}/>
@@ -66,6 +47,5 @@ export default class ShowTile extends React.Component {
             </a>
         )
     }
-
 
 }
