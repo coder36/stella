@@ -1,4 +1,3 @@
-import Tile from './tile'
 import React from 'react'
 
 export default class TopTile extends React.Component {

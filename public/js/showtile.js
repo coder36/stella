@@ -1,7 +1,8 @@
 import React from 'react'
 import StellaActions from './stellaactions'
 
-export default class InfoTile extends React.Component {
+
+export default class ShowTile extends React.Component {
 
     onClick() {
         StellaActions.setFullTile(this.props.tile)
@@ -10,7 +11,6 @@ export default class InfoTile extends React.Component {
     close() {
         StellaActions.closeFullTile();
     }
-
 
     render() {
         if ( this.props.fullScreen ) {
@@ -28,36 +28,44 @@ export default class InfoTile extends React.Component {
                 <div className="bar">
                     <span><a onClick={() => this.close() } href={'#' + this.props.tile.id}>close</a></span>
                 </div>
-
+                <div className="video">
+                    <video loop autoPlay controls>
+                        <source src={tile.video} type="video/mp4"/>
+                    </video>
+                </div>
 
                 <div className="description_container">
                     <div className="title">
-                        {tile.title}
+                        {tile.name}
                     </div>
 
                     <div className="description">
-                        {tile.content}
+                        {tile.description}
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 
     renderTile() {
         let tile = this.props.tile;
         return (
-            <a onClick={() => this.onClick() } className="tile-skyOne-medium" id={tile.id} href="#fulltile">
-                <div className="full-container">
-                    <div className="title">
-                        {tile.title}
+            <a id={tile.id} href="#fulltile" onClick={(e) => this.onClick()} className={`tile-${tile.channel}-${tile.size}`}>
+                <div className="container">
+                    <div className="img_container">
+                        <img className="tile_img" src={tile.image}/>
                     </div>
 
-                    <div className="info">
-                        {tile.content}
+
+                    <div className="header_container">
+                        <div className="header">
+                            <h1>{tile.name}</h1>
+                        </div>
                     </div>
                 </div>
             </a>
         )
     }
+
 
 }

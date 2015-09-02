@@ -1,7 +1,6 @@
-import Tile from './tile'
+import ShowTile from './showtile'
 import TopTile from './toptile'
 import InfoTile from './infotile'
-import FullTile from './fulltile'
 import Store from './store'
 import React from 'react'
 import connectToStores from 'alt/utils/connectToStores'
@@ -43,6 +42,17 @@ export default class Page extends React.Component{
         return view;
     }
 
+    createTile(tile, fullScreen) {
+        let type = tile.type;
+        if( type === "show") {
+            return(<ShowTile tile={tile} fullScreen={fullScreen}/>)
+        }
+
+        if ( type === "info" ) {
+            return(<InfoTile tile={tile} fullScreen={fullScreen}/>);
+        }
+    }
+
     render() {
 
         this.props.redraw_page;
@@ -51,12 +61,12 @@ export default class Page extends React.Component{
         let fullScreenTile = null;
         this.getRowView().forEach( (tile) => {
             if( tile == null && fullScreenTile  ) {
-                tiles.push(<FullTile tile={fullScreenTile}/>);
+                tiles.push( this.createTile(fullScreenTile,true) );
                 fullScreenTile = null;
             }
             else if (tile != null) {
                 if ( tile.fullScreen ) fullScreenTile = tile;
-                tiles.push(<Tile tile={tile}/>);
+                tiles.push( this.createTile(tile,false) );
             }
         });
 
@@ -64,7 +74,6 @@ export default class Page extends React.Component{
             <div className="pageContainer">
                 <TopTile/>
                 <div className="tilesContent">
-                    <InfoTile/>
                     {tiles}
                 </div>
             </div>
