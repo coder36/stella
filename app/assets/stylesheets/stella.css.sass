@@ -50,29 +50,23 @@ body
 
 .pageContainer
     display: inline-block
-    width: 100%
 
 .topTile
-    width: 100%
 
 .tilesContent
+    text-align: center
     +desktop
         position: relative
         top: -100px
-        width: 100%
         margin: auto
-        text-align: center
 
     +mobile
-        width: 100%
         margin: 0
 
     +tablet
         position: relative
         top: -100px
-        width: 100%
         margin: auto
-        text-align: center
 
 @mixin tile($channel, $color, $size)
 
@@ -87,7 +81,8 @@ body
         +tablet
             margin: 10px
         +mobile
-            margin: 0
+            margin: 0px
+            margin-bottom: 4px
 
 
         @if $size == "small"
@@ -100,7 +95,7 @@ body
                 height: 35vw
 
             +mobile
-                width: 100%
+                width: 98%
                 height: 100vw
 
 
@@ -112,15 +107,15 @@ body
                 width: 35vw
                 height: 35vw
             +mobile
-                width: 100%
+                width: 98%
                 height: 100vw
 
-        -webkit-box-shadow: 1px 1px 15px rgba(0,0,0,.2)
+        +box-shadow(1px 1px 15px rgba(0,0,0,.2))
 
 
         .full-container
             background-color: rgba($color,1)
-            background-image: -webkit-radial-gradient( 50% 50%, rgba(255,255,255,0.5), rgba($color,1))
+            +background-image(radial-gradient( 50% 50%, rgba(255,255,255,0.5), rgba($color,1)))
             height: 100%
             width: 100%
             overflow: hidden
@@ -130,6 +125,8 @@ body
                 color: white
                 -webkit-font-smoothing: antialiased
                 font-size: 42px
+                +mobile
+                    font-size: 60px
                 text-align: left
             .info
                 padding: 15px 15px 15px 15px
@@ -141,7 +138,6 @@ body
         .container
             background-color: #ECECEE
             height: 100%
-            width: 100%
             overflow: hidden
             &:hover
                 .img_container
@@ -156,17 +152,15 @@ body
                 max-height: 70%
 
                 img
-                    width: 100%
-                    height: 100%
                     @include transform(scale(1.1,1.1))
-                    @include transition(all 2s ease-in)
+                    @include transition(all 1s ease-in)
 
             .header_container
                 max-width: 100%
                 height: 100%
                 padding: 10px 15px 15px 15px
                 background-color: rgba($color,1)
-                background-image: -webkit-radial-gradient( 50% 50%, rgba(255,255,255,0.5), rgba($color,1))
+                +background-image(radial-gradient( 50% 50%, rgba(255,255,255,0.5), rgba($color,1)))
 
                 text-align: left
                 @include transition(all 2s ease-in)
@@ -201,7 +195,6 @@ body
 
 
     .bar
-        width: 100%
         text-align: right
         padding: 15px
         a
