@@ -23,7 +23,7 @@ export default class InfoTile extends React.Component {
     renderTile() {
         let tile = this.props.tile;
         return (
-            <a onClick={() => this.open() } className="tile-skyOne-medium" id={tile.id} href="#fulltile">
+            <a onClick={(e) => this.open(e) } className="tile-skyOne-medium" id={tile.id} href="#fulltile">
                 <div className="full-container">
                     <div className="title">
                         {tile.title}

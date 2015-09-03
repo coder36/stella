@@ -44,13 +44,8 @@ export default class Page extends React.Component{
 
     createTile(tile, fullScreen) {
         let type = tile.type;
-        if( type === "show") {
-            return(<ShowTile tile={tile} fullScreen={fullScreen}/>)
-        }
-
-        if ( type === "info" ) {
-            return(<InfoTile tile={tile} fullScreen={fullScreen}/>);
-        }
+        if ( type === "show" ) return (<ShowTile tile={tile} fullScreen={fullScreen}/> );
+        if ( type === "info" ) return (<InfoTile tile={tile} fullScreen={fullScreen}/>);
     }
 
     render() {

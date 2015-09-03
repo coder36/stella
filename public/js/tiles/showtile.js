@@ -31,7 +31,7 @@ export default class ShowTile extends React.Component {
     renderTile() {
         let tile = this.props.tile;
         return (
-            <a id={tile.id} href="#fulltile" onClick={(e) => this.open()} className={`tile-${tile.channel}-${tile.size}`}>
+            <a id={tile.id} href="#fulltile" onClick={(e) => this.open(e)} className={`tile-${tile.channel}-${tile.size}`}>
                 <div className="container">
                     <div className="img_container">
                         <img className="tile_img" src={tile.image}/>
