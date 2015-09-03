@@ -50,6 +50,10 @@ export default class Page extends React.Component{
         if ( type === "info" ) return fullScreen ? (<InfoTileFull tile={tile}/>) : (<InfoTile tile={tile}/>);
     }
 
+    isMobile() {
+        return $('.mobile').css('display') == 'block';
+    }
+
 
     render() {
 
@@ -68,9 +72,12 @@ export default class Page extends React.Component{
             }
         });
 
+        let topTile;
+        if ( !this.isMobile() ) topTile = <TopTile/>;
+
         return(
             <div className="pageContainer">
-                <TopTile/>
+                {topTile}
                 <div className="tilesContent">
                     {tiles}
                 </div>

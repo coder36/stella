@@ -1,5 +1,5 @@
 import 'fetch'
 import Page from './page'
 import React from 'react'
-
-React.render(<Page/>, document.body);
+import $ from 'jquery'
+React.render(<Page/>, $('#content')[0]);

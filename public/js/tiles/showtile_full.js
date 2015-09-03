@@ -10,7 +10,7 @@ export default class ShowTile extends React.Component {
         return(
             <div>
                 <div className="video">
-                    <video loop autoPlay controls>
+                    <video loop controls>
                         <source src={tile.video} type="video/mp4"/>
                     </video>
                 </div>
