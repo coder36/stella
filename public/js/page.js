@@ -1,6 +1,8 @@
 import ShowTile from './tiles/showtile'
-import TopTile from './toptile'
 import InfoTile from './tiles/infotile'
+import ShowTileFull from './tiles/showtile_full'
+import InfoTileFull from './tiles/infotile_full'
+import TopTile from './toptile'
 import Store from './store/store'
 import React from 'react'
 import connectToStores from 'alt/utils/connectToStores'
@@ -44,9 +46,10 @@ export default class Page extends React.Component{
 
     createTile(tile, fullScreen) {
         let type = tile.type;
-        if ( type === "show" ) return (<ShowTile tile={tile} fullScreen={fullScreen}/> );
-        if ( type === "info" ) return (<InfoTile tile={tile} fullScreen={fullScreen}/>);
+        if ( type === "show" ) return fullScreen ? (<ShowTileFull tile={tile}/>) : (<ShowTile tile={tile}/>);
+        if ( type === "info" ) return fullScreen ? (<InfoTileFull tile={tile}/>) : (<InfoTile tile={tile}/>);
     }
+
 
     render() {
 

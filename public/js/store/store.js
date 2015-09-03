@@ -4,7 +4,7 @@ import StellaActions from './stellaactions'
 class StellaStore {
 
     constructor() {
-        this.bindActions(StellaActions)
+        this.bindActions(StellaActions);
         this.state = { tiles: [], redraw_page: 0 };
         this.startRefreshDaemon();
         this.listenForResize();
@@ -20,7 +20,6 @@ class StellaStore {
            t.fullScreen = (t.id === tile.id);
            return t;
         });
-
         this.setState( {tiles: res })
     }
 
@@ -50,7 +49,7 @@ class StellaStore {
 
     startRefreshDaemon() {
         this.refreshTiles();
-        //setInterval(this.refreshTiles, 1000 );
+        //setInterval(this.refreshTiles, 5000 );
     }
 
     listenForResize() {
