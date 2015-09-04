@@ -1,6 +1,6 @@
 # Stella Styling
 
-Experiment to mix sinatra and nodejs.
+Experiment to mix sinatra and javascript.
   
   - React 
   
@@ -17,7 +17,7 @@ Experiment to mix sinatra and nodejs.
  
 <a href="https://vast-journey-2015.herokuapp.com/index.html"><img src="https://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot1.png"/></a>
 
-<a href="https://vast-journey-2015.herokuapp.com/index.html"><img src="https://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot2.png"/></a>
+<a href="https://vast-journey-2015.herokuapp.com/index.html"><img src="https://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot2.png" style="max-width: 200px"/></a>
 
 
 ## Dev Setup
