@@ -22,6 +22,7 @@ System.config({
     "fetch": "npm:whatwg-fetch@0.9.0",
     "jquery": "github:components/jquery@2.1.4",
     "react": "npm:react@0.13.3",
+    "whatwg-fetch": "npm:whatwg-fetch@0.9.0",
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.4.2"
     },
