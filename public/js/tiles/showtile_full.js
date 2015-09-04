@@ -7,13 +7,32 @@ export default class ShowTile extends React.Component {
 
     content() {
         let tile = this.props.tile;
-        return(
-            <div>
+
+        let video;
+
+        if ( tile.video ) {
+            video = (
                 <div className="video">
                     <video loop controls>
                         <source src={tile.video} type="video/mp4"/>
                     </video>
                 </div>
+            );
+        }
+
+        if ( tile.video_image ) {
+
+            video = (
+                <div className="video">
+                    <img src={tile.video_image}/>
+                </div>
+            );
+        }
+
+
+        return(
+            <div>
+                {video}
 
                 <div className="description_container">
                     <div className="title">

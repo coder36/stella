@@ -3,15 +3,15 @@ import Tile from './tile'
 import StellaActions from './../store/stellaactions'
 
 @Tile
-export default class InfoTile extends React.Component {
+export default class BillTile extends React.Component {
 
     content() {
         let tile = this.props.tile;
         return (
-            <a id={tile.id} href="#fulltile" onClick={(e) => this.open(e) } className={`tile-${tile.channel}-${tile.size}`} >
+            <a id={tile.id} href="#fulltile" onClick={(e) => this.open(e) } className="tile-skyOne-medium"  >
                 <div className="full-container">
                     <div className="title">
-                        {tile.title}
+                        See Your Bill
                     </div>
 
                     <div className="info">
