@@ -111,6 +111,10 @@ body
                 height: 100vw
 
         +box-shadow(1px 1px 15px rgba(0,0,0,.2))
+        @include transition(all 0.5s ease)
+        &:hover
+            border: 6px solid rgba(255, 255, 255, 1)
+            +box-shadow(1px 1px 15px rgba(0,0,0,0.9))
 
 
         .full-container
