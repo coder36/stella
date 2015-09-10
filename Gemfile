@@ -14,6 +14,7 @@ group :development do
   gem 'capybara'
   gem 'rspec'
   gem 'selenium-webdriver'
+  gem 'should-i-update'
 end
 
 group :production do

@@ -1,17 +1,59 @@
 import alt from './../alt'
 import StellaActions from './stellaactions'
+import $ from 'jquery'
 
 class StellaStore {
 
     constructor() {
         this.bindActions(StellaActions);
         this.state = { tiles: [], redraw_page: 0 };
-        this.startRefreshDaemon();
+        this.init();
+        this.readSeriesData();
+        this.readCustomerBillData();
+        this.readNewsData();
         this.listenForResize();
     }
 
-    updateTiles(tiles) {
-        this.setState( { tiles } );
+    init() {
+        const tiles = this.state.tiles;
+
+        tiles.push(
+            {
+                id: 'welcome',
+                type: 'info',
+                title: 'Welcome Back',
+                content: ''
+            },
+            {
+                id: 'your_bill',
+                type: 'YourBill'
+            }
+        );
+    }
+
+    addTile(tile) {
+        const tiles = this.state.tiles;
+
+        let existingTile = this.findTile(tile.id, tiles);
+        if ( existingTile ) {
+            Object.assign( existingTile, tile );
+        }
+        else {
+            tiles.push(tile);
+        }
+        this.setState( tiles );
+    }
+
+    findTile(id, tiles) {
+
+        let res = tiles.find( tile => tile.id === id );
+        console.log(res);
+
+        return res;
+    }
+
+    addTiles(tiles) {
+        tiles.forEach( tile => this.addTile(tile) );
     }
 
     setFullTile(tile) {
@@ -39,17 +81,52 @@ class StellaStore {
         this.setState( {redraw_page: counter })
     }
 
-    refreshTiles() {
-        fetch("/tiles.json")
-            .then(resp => resp.json())
-            .then((tiles) => {
-                StellaActions.updateTiles(tiles);
-            });
+
+    readNewsData() {
+
+        $.ajax({
+            url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http://feeds.skynews.com/feeds/rss/home.rss',
+            type: 'GET',
+            dataType: 'jsonp',
+            cache: false } )
+            .done( (json) => {
+                const entries = json.responseData.feed.entries;
+
+                entries.forEach((entry) =>{
+                    entry.id = entry.title.hashCode();
+                    entry.type = 'news';
+                });
+
+                StellaActions.addTiles(entries);
+            }
+        );
+
+
     }
 
-    startRefreshDaemon() {
-        this.refreshTiles();
-        //setInterval(this.refreshTiles, 5000 );
+    readCustomerBillData() {
+        fetch("http://safe-plains-5453.herokuapp.com/bill.json")
+            .then(resp => resp.json())
+            .then( (json) => {
+                var tile = json;
+                tile.type = 'your_bill';
+                tile.id = 'your_bill';
+                StellaActions.addTile(tile);
+            }
+        );
+    }
+
+    readSeriesData() {
+        fetch("/series.json")
+            .then(resp => resp.json())
+            .then((tiles) => {
+                tiles.forEach( (tile) => {
+                    tile.id  = tile.name.hashCode();
+                });
+
+                StellaActions.addTiles(tiles);
+            }
+        );
     }
 
     listenForResize() {

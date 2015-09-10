@@ -1,7 +1,11 @@
-import ShowTile from './tiles/showtile'
-import InfoTile from './tiles/infotile'
-import ShowTileFull from './tiles/showtile_full'
-import InfoTileFull from './tiles/infotile_full'
+import Series from './tiles/series'
+import SeriesFull from './tiles/series_full'
+import Info from './tiles/info'
+import InfoFull from './tiles/info_full'
+import YourBillFull from './tiles/your_bill_full'
+import YourBill from './tiles/your_bill'
+import News from './tiles/news'
+import NewsFull from './tiles/news_full'
 import TopTile from './toptile'
 import Store from './store/store'
 import React from 'react'
@@ -46,8 +50,10 @@ export default class Page extends React.Component{
 
     createTile(tile, fullScreen) {
         let type = tile.type;
-        if ( type === "show" ) return fullScreen ? (<ShowTileFull tile={tile}/>) : (<ShowTile tile={tile}/>);
-        if ( type === "info" ) return fullScreen ? (<InfoTileFull tile={tile}/>) : (<InfoTile tile={tile}/>);
+        if ( type === "info" ) return fullScreen ? (<InfoFull tile={tile}/>) : (<Info tile={tile}/>);
+        if ( type === "series" ) return fullScreen ? (<SeriesFull tile={tile}/>) : (<Series tile={tile}/>);
+        if ( type === "your_bill" ) return fullScreen ? (<YourBillFull tile={tile}/>) : (<YourBill tile={tile}/>);
+        if ( type === "news" ) return fullScreen ? (<NewsFull tile={tile}/>) : (<News tile={tile}/>);
     }
 
     isMobile() {

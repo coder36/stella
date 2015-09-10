@@ -21,6 +21,7 @@ System.config({
     "core-js": "npm:core-js@1.1.1",
     "fetch": "npm:whatwg-fetch@0.9.0",
     "jquery": "github:components/jquery@2.1.4",
+    "moment": "github:moment/moment@2.10.6",
     "react": "npm:react@0.13.3",
     "whatwg-fetch": "npm:whatwg-fetch@0.9.0",
     "github:jspm/nodelibs-buffer@0.1.0": {
