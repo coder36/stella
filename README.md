@@ -14,13 +14,13 @@ Experiment to mix sinatra and javascript.
   
   
   
-####[Demo](https://vast-journey-2015.herokuapp.com/index.html)
+####[Demo](http://vast-journey-2015.herokuapp.com/index.html)
  
-<a href="https://vast-journey-2015.herokuapp.com/index.html"><img src="https://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot1.png"/></a>
+<a href="http://vast-journey-2015.herokuapp.com/index.html"><img src="http://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot1.png"/></a>
 
 It's responsive...
 
-<a href="https://vast-journey-2015.herokuapp.com/index.html"><img src="https://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot2.png" width="400px" /></a>
+<a href="http://vast-journey-2015.herokuapp.com/index.html"><img src="https://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot2.png" width="400px" /></a>
 
 
 ## Dev Setup
