@@ -6,6 +6,8 @@ Experiment to mix sinatra and javascript.
   
   - JSPM is used to manage and package the javascript.
   
+  - Isomorphic React - how does this work in practice ?
+  
   - Rack provides an asset pipeline for SASS -> CSS compilation
   
   - Sinatra provides a simple json endpoint to drive the demo app
@@ -31,6 +33,17 @@ It's responsive...
 
 Open [http://localhost:9292/index.html](http://localhost:9292/index.html)
 
+
+### Ismorphic react
+
+The isomorphic version uses node to pre-render the page.  It's missing a fair bit of content, but on slow mobile devices at least
+the user isn't left with an empty page.
+
+Open [http://localhost:9292/iso](http://localhost:9292/iso)
+
+You will see an initial static version of the site, until react takes over client side.  This works best on a mobile.
+
+
 When running in dev mode, the ES6/2015 javascript is compiled at runtime.
 
 ## Production setup
@@ -39,7 +52,8 @@ When running in dev mode, the ES6/2015 javascript is compiled at runtime.
         rake bootstrap
         rake prod:build
         
-This will create a `./dist` folder with minified veriosn of the javascript.
+This will create a `./dist` folder with minified veriosn of the javascript.  It will also pre-render a static version of the site,
+and embed this into the index.html
 
 ## Running in production mode
 

@@ -1,3 +1,5 @@
+require 'net/http'
+
 desc "Start in production mode"
 
 namespace :prod do
@@ -7,7 +9,7 @@ namespace :prod do
   end
 
   desc "build production dist dir"
-  task :build do
+  task :build => "node:start" do
     system(<<-SCRIPT)
     rm -rf dist
     mkdir -p dist
@@ -34,14 +36,31 @@ end
 
 
 desc "start application"
-task :start => :stop do
+task :start => [:stop, "node:start"] do
   fail 'Starting failed' unless `rackup --env test &>rack.log &`
+
+
+
 end
 
 
 desc "stop application"
-task :stop do
+task :stop => "node:stop"  do
   `lsof -ti tcp:9292 -sTCP:LISTEN | xargs kill -9`
+end
+
+namespace "node" do
+
+  desc "start node"
+  task :start => "node:stop" do
+    fail 'Unable to start node' unless `babel-node --stage 0 server.js &>node.log & `
+  end
+
+  desc "stop node"
+  task :stop do
+    `lsof -ti tcp:3000 -sTCP:LISTEN | xargs kill -9`
+  end
+
 end
 
 
@@ -51,9 +70,16 @@ def strip_index_html
       line = '' if line[/config.js/]
       line = '' if line[/system.js/]
       line = '<script src="app.min.js"></script>' if line[/js\/main/]
+      line = pre_rendered_html if line[/<!--pre_rendered_html-->/]
       out.write(line)
     end
   end
+end
+
+def pre_rendered_html
+  url = 'http://localhost:3000'
+  resp = Net::HTTP.get_response(URI.parse(url))
+  resp.body
 end
 
 desc "deploy to heroku"

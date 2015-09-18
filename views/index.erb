@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<link>
+<head>
+    <title>Stella</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/stella.css"/>
+    <title>Stella</title>
+</head>
+<body>
+
+<div class="desktop"></div>
+<div class="tablet"></div>
+<div class="mobile"></div>
+<div id="content"><%= render_isomorphic_html() %></div>
+
+<script src="jspm_packages/system.js"></script>
+<script src="config.js"></script>
+<script>System.import('js/main')</script>
+
+</body>
+</html>
+
+
+

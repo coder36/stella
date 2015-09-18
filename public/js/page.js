@@ -11,6 +11,7 @@ import Store from './store/store'
 import React from 'react'
 import connectToStores from 'alt/utils/connectToStores'
 import $ from 'jquery'
+import {isRunningOnClient} from './utils'
 
 
 @connectToStores
@@ -29,6 +30,8 @@ export default class Page extends React.Component{
     }
 
     getRowView() {
+
+        if ( !isRunningOnClient() ) return this.props.tiles;
         let view = [];
         let previousBottom = null;
         this.props.tiles.forEach( (tile) => {
@@ -79,7 +82,10 @@ export default class Page extends React.Component{
         });
 
         let topTile;
-        if ( !this.isMobile() ) topTile = <TopTile/>;
+
+        if(isRunningOnClient()) {
+            if (!this.isMobile()) topTile = <TopTile/>;
+        }
 
         return(
             <div className="pageContainer">

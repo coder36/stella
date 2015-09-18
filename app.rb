@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/json'
+require 'net/http'
 
 class App < Sinatra::Base
 
@@ -49,6 +50,29 @@ class App < Sinatra::Base
     json series
   end
 
+
+
+
+  get '/iso' do
+
+    erb :index
+
+  end
+
+
+
+
+
+
+  helpers do
+
+    def render_isomorphic_html
+      url = 'http://localhost:3000'
+      resp = Net::HTTP.get_response(URI.parse(url))
+      resp.body
+    end
+
+  end
 
 
 

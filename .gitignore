@@ -4,5 +4,7 @@
 /public/jspm_packages
 /dist
 rack.log
+node.log
 .sass-cache
 .rake_tasks~
+npm-debug.log

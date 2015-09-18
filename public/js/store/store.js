@@ -1,6 +1,7 @@
 import alt from './../alt'
 import StellaActions from './stellaactions'
 import $ from 'jquery'
+import {isRunningOnClient, hashCode} from '../utils'
 
 class StellaStore {
 
@@ -8,10 +9,12 @@ class StellaStore {
         this.bindActions(StellaActions);
         this.state = { tiles: [], redraw_page: 0 };
         this.init();
-        this.readSeriesData();
-        this.readCustomerBillData();
-        this.readNewsData();
-        this.listenForResize();
+        if ( isRunningOnClient() ) {
+            this.readSeriesData();
+            this.readCustomerBillData();
+            this.readNewsData();
+            this.listenForResize();
+        }
     }
 
     init() {
@@ -26,7 +29,7 @@ class StellaStore {
             },
             {
                 id: 'your_bill',
-                type: 'YourBill'
+                type: 'your_bill'
             }
         );
     }
@@ -93,7 +96,7 @@ class StellaStore {
                 const entries = json.responseData.feed.entries;
 
                 entries.forEach((entry) =>{
-                    entry.id = entry.title.hashCode();
+                    entry.id = hashCode(entry.title);
                     entry.type = 'news';
                 });
 
@@ -108,7 +111,7 @@ class StellaStore {
         fetch("http://safe-plains-5453.herokuapp.com/bill.json")
             .then(resp => resp.json())
             .then( (json) => {
-                var tile = json;
+                let tile = json;
                 tile.type = 'your_bill';
                 tile.id = 'your_bill';
                 StellaActions.addTile(tile);
@@ -121,7 +124,7 @@ class StellaStore {
             .then(resp => resp.json())
             .then((tiles) => {
                 tiles.forEach( (tile) => {
-                    tile.id  = tile.name.hashCode();
+                    tile.id  = hashCode(tile.name);
                 });
 
                 StellaActions.addTiles(tiles);
