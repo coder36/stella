@@ -28,6 +28,8 @@ end
 desc "bootstrap environment"
 task :bootstrap do
   system(<<-SCRIPT)
+  npm install jspm -g
+  npm install babel -g
   npm install
   jspm install
 

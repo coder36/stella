@@ -50,32 +50,14 @@ class App < Sinatra::Base
     json series
   end
 
-
-
-
   get '/iso' do
-
     erb :index
-
   end
-
-
-
-
-
 
   helpers do
-
     def render_isomorphic_html
-      url = 'http://localhost:3000'
-      resp = Net::HTTP.get_response(URI.parse(url))
-      resp.body
+      Net::HTTP.get_response(URI.parse('http://localhost:3000')).body
     end
-
   end
-
-
-
-
 
 end
