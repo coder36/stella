@@ -50,7 +50,6 @@ class StellaStore {
     findTile(id, tiles) {
 
         let res = tiles.find( tile => tile.id === id );
-        console.log(res);
 
         return res;
     }
@@ -88,7 +87,7 @@ class StellaStore {
     readNewsData() {
 
         $.ajax({
-            url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http://feeds.skynews.com/feeds/rss/home.rss',
+            url: '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http://feeds.skynews.com/feeds/rss/home.rss',
             type: 'GET',
             dataType: 'jsonp',
             cache: false } )
@@ -108,7 +107,7 @@ class StellaStore {
     }
 
     readCustomerBillData() {
-        fetch("http://safe-plains-5453.herokuapp.com/bill.json")
+        fetch("//safe-plains-5453.herokuapp.com/bill.json")
             .then(resp => resp.json())
             .then( (json) => {
                 let tile = json;
