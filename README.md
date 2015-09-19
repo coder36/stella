@@ -16,9 +16,6 @@ Experiment to mix sinatra and javascript.
   
   - Rake pulls it all together
   
-  
-  
-####[Demo](http://vast-journey-2015.herokuapp.com/index.html)
 
  
 <a href="http://vast-journey-2015.herokuapp.com/index.html"><img src="http://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot1.png"/></a>
@@ -34,9 +31,9 @@ It's responsive...
 One of the problems with react, is that the initial load and parsing of the javascript can be slow.  On a modern device this isn't a problem,
 but on an older phone, the delay can make for a bad user experience - it appears as though the website has stopped responding.   
 The work around for this is to pre render the page using 'isomorphic' react.  For stella, most of the content is pulled dynamically from
- json endpoints.  This content can not be pre-redndered.  However parts of stella can be pre-rendered:  
+ json endpoints - this can not be pre-redndered.  However parts of stella can be pre-rendered:  
 
-####[Isomorphic static version](http://vast-journey-2015.herokuapp.com/iso.html)
+####[Isomorphic version (Best viewed on a mobile)](http://vast-journey-2015.herokuapp.com/iso.html)
 
 This works really well on a mobile device and effectively disguises what can be a slow first render.
 
@@ -47,15 +44,15 @@ Stella uses node to create a pre-rendered version of the site, and embeds this a
 
 ## Dev Setup
 
+When running in dev mode, the ES6/2015 javascript is compiled at runtime.
+
         bundle
         rake bootstrap
         rake start
 
 Open [http://localhost:9292/index.html](http://localhost:9292/index.html)
 
-
-### Ismorphic react
-
+### Isomorphic
 The isomorphic version uses node to pre-render the page.  It's missing a fair bit of content, but on slow mobile devices at least
 the user isn't left with an empty page.
 
@@ -64,7 +61,7 @@ Open [http://localhost:9292/iso](http://localhost:9292/iso)
 You will see an initial static version of the site, until react takes over client side.  This works best on a mobile.
 
 
-When running in dev mode, the ES6/2015 javascript is compiled at runtime.
+
 
 ## Production setup
 
@@ -89,3 +86,4 @@ This will serve up content from the `dist` folder
 ## Deploying to heroku
 
         rake deploy:heroku
+        
