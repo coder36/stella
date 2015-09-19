@@ -15,6 +15,7 @@ group :development do
   gem 'rspec'
   gem 'selenium-webdriver'
   gem 'should-i-update'
+  gem 'file-tail'
 end
 
 group :production do

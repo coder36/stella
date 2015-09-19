@@ -13,11 +13,11 @@
 <div class="tablet"></div>
 <div class="mobile"></div>
 <div id="content"><%= render_isomorphic_html() %></div>
-
-<script src="jspm_packages/system.js"></script>
-<script src="config.js"></script>
-<script>System.import('js/main')</script>
-
+<% if !isomorphic_only %>
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <script>System.import('js/main')</script>
+<% end %>
 </body>
 </html>
 

@@ -51,7 +51,11 @@ class App < Sinatra::Base
   end
 
   get '/iso' do
-    erb :index
+    erb :index, locals: { isomorphic_only: true }
+  end
+
+  get '/' do
+    erb :index, locals: { isomorphic_only: false }
   end
 
   helpers do

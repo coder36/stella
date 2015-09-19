@@ -1,11 +1,16 @@
 require 'net/http'
+require 'file-tail'
+require 'timeout'
 
 desc "Start in production mode"
 
 namespace :prod do
   desc "start in production mode"
   task :start => [:stop,:build] do
-    fail 'Starting failed' unless `rackup --env production &>rack.log &`
+    cmd = "rackup --env production &>rack.log &"
+    puts cmd
+    `#{cmd}`
+    fail "#{cmd} Failed" unless watch_for('rack.log', [/WEBrick::HTTPServer#start/])
   end
 
   desc "build production dist dir"
@@ -37,12 +42,28 @@ task :bootstrap do
 end
 
 
+def watch_for filename, regex_list
+  Timeout::timeout(10) {
+    regex_list = [regex_list] if !regex_list.is_a? Array
+
+    File::Tail::Logfile.open(filename) do |log|
+      log.interval = 1
+      log.tail do |line|
+        puts line
+        regex_list.each { |regex| return true if line =~ regex }
+      end
+    end
+  } rescue nil
+
+  false
+end
+
 desc "start application"
 task :start => [:stop, "node:start"] do
-  fail 'Starting failed' unless `rackup --env test &>rack.log &`
-
-
-
+  cmd = "rackup --env test &>rack.log &"
+  puts cmd
+  `#{cmd}`
+  fail "#{cmd} Failed" unless watch_for('rack.log', [/WEBrick::HTTPServer#start/])
 end
 
 
@@ -55,7 +76,10 @@ namespace "node" do
 
   desc "start node"
   task :start => "node:stop" do
-    fail 'Unable to start node' unless `babel-node --stage 0 server.js &>node.log & `
+    cmd = "babel-node --stage 0 server.js &>node.log &"
+    puts cmd
+    `#{cmd}`
+    fail "#{cmd} Failed" unless watch_for('node.log', [/listening at http/])
   end
 
   desc "stop node"
@@ -76,6 +100,17 @@ def strip_index_html
       out.write(line)
     end
   end
+
+  File.open('dist/iso.html', 'w') do |out|
+    File.open('public/index.html').readlines.each do |line|
+      line = '' if line[/config.js/]
+      line = '' if line[/system.js/]
+      line = '' if line[/js\/main/]
+      line = pre_rendered_html if line[/<!--pre_rendered_html-->/]
+      out.write(line)
+    end
+  end
+
 end
 
 def pre_rendered_html
