@@ -22,6 +22,7 @@ namespace :prod do
     ./node_modules/.bin/uglifyjs dist/app.js -m -c -o dist/app.min.js
     cp -r public/img dist/img
     cp -r public/fonts dist/fonts
+    cp public/bill.json dist/bill.json
 
     SCRIPT
 

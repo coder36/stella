@@ -107,7 +107,7 @@ class StellaStore {
     }
 
     readCustomerBillData() {
-        fetch("//safe-plains-5453.herokuapp.com/bill.json")
+        fetch("/bill.json")
             .then(resp => resp.json())
             .then( (json) => {
                 let tile = json;

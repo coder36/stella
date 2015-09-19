@@ -7,7 +7,7 @@ export default class NewsTile extends React.Component {
 
     content() {
         let news = this.props.tile;
-        let img = news.mediaGroups[0].contents[0].url.replace('70x50', '736x414').replace('http://', '//');
+        let img = news.mediaGroups[0].contents[0].url.replace('70x50', '736x414');
 
         return (
             <a id={news.id} href="#fulltile" onClick={(e) => this.open(e)} className={`tile-skyArts-medium`}>

@@ -7,7 +7,7 @@ export default class NewsFull extends React.Component {
 
     content() {
         let news = this.props.tile;
-        let img = news.mediaGroups[0].contents[0].url.replace('70x50', '736x414').replace('http://', '//');
+        let img = news.mediaGroups[0].contents[0].url.replace('70x50', '736x414');
 
 
         return(
