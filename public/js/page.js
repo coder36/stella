@@ -81,15 +81,9 @@ export default class Page extends React.Component{
             }
         });
 
-        let topTile;
-
-        if(isRunningOnClient()) {
-            if (!this.isMobile()) topTile = <TopTile/>;
-        }
-
         return(
             <div className="pageContainer">
-                {topTile}
+                <TopTile/>
                 <div className="tilesContent">
                     {tiles}
                 </div>

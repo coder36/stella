@@ -7,11 +7,20 @@ export default class Series extends React.Component {
 
     content() {
         let tile = this.props.tile;
+        let img;
+        if ( tile.name !== "" ) {
+            img = <img className="tile_img" src={tile.image}/>
+        }
+        else {
+            img = <div className="blank"></div>
+        }
+
+
         return (
             <a id={tile.id} href="#fulltile" onClick={(e) => this.open(e)} className={`tile-${tile.channel}-${tile.size}`}>
                 <div className="container">
                     <div className="img_container">
-                        <img className="tile_img" src={tile.image}/>
+                        {img}
                     </div>
 
 

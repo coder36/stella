@@ -10,7 +10,7 @@ class App < Sinatra::Base
         type: "series",
         name: "Ballers",
         image: "img/ballers-key-art-16x9-10939e1.jpg",
-        channel: "skyAtlantic",
+        channel: "skyOne",
         size: "medium",
         video: "//static.video.sky.com/skyatlantic/2015/08/138903/138903-576p_2000K_H264.mp4",
         description: "Dwayne 'The Rock' Johnson stars as a retired NFL player who is navigating his new life off the field in this new drama from executive producer Mark Wahlberg."
@@ -28,7 +28,7 @@ class App < Sinatra::Base
         type: "series",
         name: "Aquarius",
         image: "//dm8eklel4s62k.cloudfront.net/images/small/Aquarius-key-art-16x9-bfe3cee.jpg",
-        channel: "skyAtlantic",
+        channel: "skyOne",
         size: "medium",
         video: "//static.video.sky.com/skyatlantic/2015/08/137805/137805-360p_800K_H264.mp4",
         description: "Cop drama set in 1960's LA starring Golden Globe winner David Duchovny as an undercover cop who’s trying to track a missing 16-year-old, only to find she’s joined a small but growing band of drifters under the sway of an infamous cult leader.",

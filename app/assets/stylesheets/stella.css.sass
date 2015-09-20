@@ -154,9 +154,16 @@ body
                 max-height: 50%
                 object-fit: cover
 
+
                 img
                     @include transform(scale(1.1,1.1))
                     @include transition(all 1s ease-in)
+
+                .blank
+                    height: 1000px
+                    width: 1000px
+                    background-color: rgba($color,1)
+
 
             .header_container
                 max-width: 100%

@@ -7,7 +7,6 @@ class StellaStore {
 
     constructor() {
         this.bindActions(StellaActions);
-        this.state = { tiles: [], redraw_page: 0 };
         this.init();
         if ( isRunningOnClient() ) {
             this.readSeriesData();
@@ -18,7 +17,7 @@ class StellaStore {
     }
 
     init() {
-        const tiles = this.state.tiles;
+        let tiles = [];
 
         tiles.push(
             {
@@ -32,6 +31,31 @@ class StellaStore {
                 type: 'your_bill'
             }
         );
+
+        for(let i=1; i<= 4; i++ ) {
+            tiles.push(
+                {
+                    id: `s_${i}`,
+                    type: "series",
+                    channel: "skyOne",
+                    size: "medium",
+                    name: ""
+                }
+            )
+        }
+
+        for(let i=1; i<= 10; i++ ) {
+            tiles.push(
+                {
+                    id: `n_${i}`,
+                    type: "news",
+                    title: ""
+                }
+            )
+        }
+
+        this.state = { tiles, redraw_page: 0 };
+
     }
 
     addTile(tile) {
@@ -85,7 +109,7 @@ class StellaStore {
 
 
     readNewsData() {
-
+        let id = 1;
         $.ajax({
             url: '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http://feeds.skynews.com/feeds/rss/home.rss',
             type: 'GET',
@@ -95,7 +119,7 @@ class StellaStore {
                 const entries = json.responseData.feed.entries;
 
                 entries.forEach((entry) =>{
-                    entry.id = hashCode(entry.title);
+                    entry.id = `n_${id++}`;
                     entry.type = 'news';
                 });
 
@@ -119,11 +143,12 @@ class StellaStore {
     }
 
     readSeriesData() {
+        let id = 1;
         fetch("/series.json")
             .then(resp => resp.json())
             .then((tiles) => {
                 tiles.forEach( (tile) => {
-                    tile.id  = hashCode(tile.name);
+                    tile.id  = `s_${id++}`;
                 });
 
                 StellaActions.addTiles(tiles);
