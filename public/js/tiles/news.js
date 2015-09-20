@@ -7,12 +7,13 @@ export default class NewsTile extends React.Component {
 
     content() {
         let news = this.props.tile;
-        let img;
+        let img = <div className="blank"></div>
         if (news.title !== "") {
-            img = <img className="tile_img" src={news.mediaGroups[0].contents[0].url.replace('70x50', '736x414')}/>
-        }
-        else {
-            img = <div className="blank"></div>
+            try {
+                img = <img className="tile_img" src={news.mediaGroups[0].contents[0].url.replace('70x50', '736x414')}/>
+            }
+            catch(e) {
+            }
         }
 
         return (
