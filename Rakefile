@@ -97,6 +97,7 @@ namespace :deploy do
     cp -r ./app.rb #{root}
     cp -r ./config.ru #{root}
     cp -r ./Gemfile* #{root}
+    cp -r views #{root}
     cd #{root}
     git init
     git add .
