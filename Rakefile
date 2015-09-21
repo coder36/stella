@@ -7,14 +7,10 @@ desc "Start in production mode"
 namespace :prod do
   desc "start in production mode"
   task :start => [:stop,:build] do
-    cmd = "rackup --env production &>rack.log &"
-    puts cmd
-    `#{cmd}`
-    fail "#{cmd} Failed" unless watch_for('rack.log', [/WEBrick::HTTPServer#start/])
   end
 
   desc "build production dist dir"
-  task :build => "node:start" do
+  task :build => [:stop, "node:start" ] do
     system(<<-SCRIPT)
     rm -rf dist
     mkdir -p dist
@@ -26,7 +22,17 @@ namespace :prod do
 
     SCRIPT
 
-    strip_index_html
+    File.open('views/_pre_rendereded_html.erb', 'w') do |out|
+      out.write generate_isomorphic_react_html
+    end
+
+    cmd = "rackup --env production &>rack.log &"
+    puts cmd
+    `#{cmd}`
+    fail "#{cmd} Failed" unless watch_for('rack.log', [/WEBrick::HTTPServer#start/])
+
+    write_index_html
+
   end
 
 end
@@ -43,21 +49,6 @@ task :bootstrap do
 end
 
 
-def watch_for filename, regex_list
-  Timeout::timeout(10) {
-    regex_list = [regex_list] if !regex_list.is_a? Array
-
-    File::Tail::Logfile.open(filename) do |log|
-      log.interval = 1
-      log.tail do |line|
-        puts line
-        regex_list.each { |regex| return true if line =~ regex }
-      end
-    end
-  } rescue nil
-
-  false
-end
 
 desc "start application"
 task :start => [:stop, "node:start"] do
@@ -91,35 +82,6 @@ namespace "node" do
 end
 
 
-def strip_index_html
-  File.open('dist/index.html', 'w') do |out|
-    File.open('public/index.html').readlines.each do |line|
-      line = '' if line[/config.js/]
-      line = '' if line[/system.js/]
-      line = '<script src="app.min.js"></script>' if line[/js\/main/]
-      line = pre_rendered_html if line[/<!--pre_rendered_html-->/]
-      out.write(line)
-    end
-  end
-
-  File.open('dist/iso.html', 'w') do |out|
-    File.open('public/index.html').readlines.each do |line|
-      line = '' if line[/config.js/]
-      line = '' if line[/system.js/]
-      line = '' if line[/js\/main/]
-      line = pre_rendered_html if line[/<!--pre_rendered_html-->/]
-      out.write(line)
-    end
-  end
-
-end
-
-def pre_rendered_html
-  url = 'http://localhost:3000'
-  resp = Net::HTTP.get_response(URI.parse(url))
-  resp.body
-end
-
 desc "deploy to heroku"
 namespace :deploy do
 
@@ -146,8 +108,39 @@ namespace :deploy do
     SCRIPT
 
     puts 'Deployed to:'
-    puts 'https://vast-journey-2015.herokuapp.com/index.html'
+    puts 'https://vast-journey-2015.herokuapp.com/'
 
   end
 
 end
+
+def watch_for filename, regex_list
+  Timeout::timeout(10) {
+    regex_list = [regex_list] if !regex_list.is_a? Array
+
+    File::Tail::Logfile.open(filename) do |log|
+      log.interval = 1
+      log.tail do |line|
+        puts line
+        regex_list.each { |regex| return true if line =~ regex }
+      end
+    end
+  } rescue nil
+
+  false
+end
+
+def generate_isomorphic_react_html
+  call_url 'http://localhost:3000'
+end
+
+def call_url url
+  resp = Net::HTTP.get_response(URI.parse(url)).body
+end
+
+def write_index_html
+  File.open('dist/index.html', 'w') do |out|
+      out.write(call_url('http://localhost:9292/'))
+  end
+end
+

@@ -3,6 +3,7 @@
 /node_modules
 /public/jspm_packages
 /dist
+/views/_pre_rendered_isomorphic_html.erb
 rack.log
 node.log
 .sass-cache

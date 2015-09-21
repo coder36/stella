@@ -2,7 +2,7 @@
 
 Experiment to mix sinatra and javascript.
 
-####[Demo](http://vast-journey-2015.herokuapp.com/index.html)
+####[Demo](http://vast-journey-2015.herokuapp.com/)
   
   - React 
   
@@ -18,11 +18,11 @@ Experiment to mix sinatra and javascript.
   
 
  
-<a href="http://vast-journey-2015.herokuapp.com/index.html"><img src="http://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot1.png"/></a>
+<a href="http://vast-journey-2015.herokuapp.com/"><img src="http://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot1.png"/></a>
 
 It's responsive...
 
-<a href="http://vast-journey-2015.herokuapp.com/index.html"><img src="https://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot2.png" width="400px" /></a>
+<a href="http://vast-journey-2015.herokuapp.com/"><img src="https://raw.githubusercontent.com/coder36/stella/master/public/img/screenshot2.png" width="400px" /></a>
 
 
 
@@ -33,7 +33,7 @@ but on an older phone, the delay can make for a bad user experience - it appears
 The work around for this is to pre render the page using 'isomorphic' react.  For stella, most of the content is pulled dynamically from
  json endpoints - this can not be pre-redndered.  However parts of stella can be pre-rendered:  
 
-####[Isomorphic version (Best viewed on a mobile)](http://vast-journey-2015.herokuapp.com/iso.html)
+####[Isomorphic version (Best viewed on a mobile)](http://vast-journey-2015.herokuapp.com/iso)
 
 This works really well on a mobile device and effectively disguises what can be a slow first render.
 
@@ -50,7 +50,7 @@ When running in dev mode, the ES6/2015 javascript is compiled at runtime.
         rake bootstrap
         rake start
 
-Open [http://localhost:9292/index.html](http://localhost:9292/index.html)
+Open [http://localhost:9292/index.html](http://localhost:9292/)
 
 ### Isomorphic
 The isomorphic version uses node to pre-render the page.  It's missing a fair bit of content, but on slow mobile devices at least
@@ -78,9 +78,9 @@ and embed this into the index.html and iso.html
  
 This will serve up content from the `dist` folder 
  
-[http://localhost:9292/index.html](http://localhost:9292/index.html) 
+[http://localhost:9292/index.html](http://localhost:9292/) 
 
-[http://localhost:9292/iso.html](http://localhost:9292/iso.html)
+[http://localhost:9292/iso.html](http://localhost:9292/)
 
 
 ## Deploying to heroku
