@@ -136,7 +136,9 @@ def generate_isomorphic_react_html
 end
 
 def call_url url
-  resp = Net::HTTP.get_response(URI.parse(url)).body
+  resp = Net::HTTP.get_response(URI.parse(url))
+  fail "Error requesting #{url}" unless resp.code == '200'
+  resp.body
 end
 
 def write_index_html
